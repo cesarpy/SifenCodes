@@ -28,25 +28,14 @@ public enum TipoRegimen {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
     public String getCodigoStr() {
         return codigoStr;
-    }
-
-    public void setCodigoStr(String codigoStr) {
-        this.codigoStr = codigoStr;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     private static final Map<Integer, TipoRegimen> codeMap = new HashMap<>();
 
