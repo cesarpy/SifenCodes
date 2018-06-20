@@ -18,7 +18,7 @@ public enum TipoRegimen {
     private String descripcion;
 
 
-    TipoRegimen(Integer codigo, String codigoStr, String descripcion) {
+    private TipoRegimen(Integer codigo, String codigoStr, String descripcion) {
         this.codigo = codigo;
         this.codigoStr = codigoStr;
         this.descripcion = descripcion;
