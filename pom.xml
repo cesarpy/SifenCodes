@@ -7,8 +7,10 @@
     <groupId>com.ccacerescv</groupId>
     <artifactId>sifen-codes</artifactId>
     <version>0.2.0-SNAPSHOT</version>
+    <name>Sifen Codes</name>
     <description>Proyecto que contiene las distintas codificaciones generales del proyecto SIFEN de la SET</description>
     <url>https://github.com/cesarpy/SifenCodes</url>
+    <packaging>jar</packaging>
 
     <licenses>
         <license>
@@ -17,9 +19,17 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <name>César Cáceres Vidal</name>
+            <email>cesarcaceres1994@gmail.com</email>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:git@github.com:cesarpy/SifenCodes.git</connection>
         <developerConnection>scm:git:git@github.com:cesarpy/SifenCodes.git</developerConnection>
+        <url>git@github.com:cesarpy/SifenCodes.git</url>
     </scm>
 
     <properties>
@@ -32,17 +42,100 @@
 
     </dependencies>
 
+    <distributionManagement>
+        <!-- Repository for snapshots -->
+        <!--<snapshotRepository>-->
+            <!--<id>sonatype-nexus-snapshots</id>-->
+            <!--<url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
+        <!--&lt;!&ndash; Repository for releases &ndash;&gt;-->
+        <!--<repository>-->
+            <!--<id>nexus-releases</id>-->
+            <!--<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+        <!--</repository>-->
+
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://192.168.0.201:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <url>http://192.168.0.201:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.2</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-gpg-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>sign-artifacts</id>-->
+                        <!--<phase>verify</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>sign</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+
         </plugins>
     </build>
 
