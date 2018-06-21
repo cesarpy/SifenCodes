@@ -39,9 +39,9 @@ public enum DocumentoElectronico {
     }
 
     //Este lo dejamos para el caso de otros
-    public void setDescripcion(String descripcion) {
+    /*public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
+    }*/
 
     private static final Map<Integer, DocumentoElectronico> codeMap = new HashMap<>();
 
