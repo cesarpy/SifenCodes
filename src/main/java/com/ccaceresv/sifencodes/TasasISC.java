@@ -1,5 +1,8 @@
 package com.ccaceresv.sifencodes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum TasasISC {
     UNO(1,"01","1%"),
     CINCO(2,"02","5%"),
@@ -36,4 +39,22 @@ public enum TasasISC {
     public String getPorcentaje() {
         return porcentaje;
     }
+
+    private static final Map<Integer, TasasISC> codeMap = new HashMap<>();
+
+    //vamos a cargar para poder buscar por codigo
+    static {
+        for(TasasISC ti : TasasISC.values()){
+            codeMap.put(ti.getCodigo(), ti);
+        }
+    }
+
+    public static TasasISC getByCodigo(Integer codigo){
+        if (codigo == null){
+            return null;
+        }
+        return codeMap.get(codigo);
+
+    }
+
 }

@@ -1,5 +1,8 @@
 package com.ccaceresv.sifencodes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum DocumentoElectronico {
     FACTURA_B2B(1,"01","Factura electrónica (B2B)"),
     FACTURA_B2C(2,"02","Factura electrónica consumidor (B2C)"),
@@ -38,5 +41,22 @@ public enum DocumentoElectronico {
     //Este lo dejamos para el caso de otros
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    private static final Map<Integer, DocumentoElectronico> codeMap = new HashMap<>();
+
+    //vamos a cargar para poder buscar por codigo
+    static {
+        for(DocumentoElectronico de : DocumentoElectronico.values()){
+            codeMap.put(de.getCodigo(), de);
+        }
+    }
+
+    public static DocumentoElectronico getByCodigo(Integer codigo){
+        if (codigo == null){
+            return null;
+        }
+        return codeMap.get(codigo);
+
     }
 }

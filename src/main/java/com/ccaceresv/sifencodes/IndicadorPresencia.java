@@ -1,5 +1,8 @@
 package com.ccaceresv.sifencodes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum IndicadorPresencia {
     PRESENCIAL(1,"Operación Presencial"),
     INTERNET(2,"Operación por internet"),
@@ -23,6 +26,23 @@ public enum IndicadorPresencia {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    private static final Map<Integer, IndicadorPresencia> codeMap = new HashMap<>();
+
+    //vamos a cargar para poder buscar por codigo
+    static {
+        for(IndicadorPresencia ip : IndicadorPresencia.values()){
+            codeMap.put(ip.getCodigo(), ip);
+        }
+    }
+
+    public static IndicadorPresencia getByCodigo(Integer codigo){
+        if (codigo == null){
+            return null;
+        }
+        return codeMap.get(codigo);
+
     }
 
 }

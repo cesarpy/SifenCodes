@@ -1,5 +1,8 @@
 package com.ccaceresv.sifencodes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Departamento {
     CAPITAL(1,"01","CAPITAL"),
     CONCEPCION(2,"02","CONCEPCION"),
@@ -43,5 +46,22 @@ public enum Departamento {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    private static final Map<Integer, Departamento> codeMap = new HashMap<>();
+
+    //vamos a cargar para poder buscar por codigo
+    static {
+        for(Departamento dp : Departamento.values()){
+            codeMap.put(dp.getCodigo(), dp);
+        }
+    }
+
+    public static Departamento getByCodigo(Integer codigo){
+        if (codigo == null){
+            return null;
+        }
+        return codeMap.get(codigo);
+
     }
 }
